@@ -20,6 +20,7 @@ interface BoundsProps {
   hideRotateHandle: boolean
   hideBindingHandles: boolean
   hideResizeHandles: boolean
+  forceShowRotateHandles: boolean
   viewportWidth: number
   children?: React.ReactElement
 }
@@ -35,6 +36,7 @@ export const Bounds = observer<BoundsProps>(function Bounds({
   hideResizeHandles,
   hideRotateHandle,
   hideBindingHandles,
+  forceShowRotateHandles,
 }: BoundsProps) {
   // Touch target size
   const targetSize = (viewportWidth < 768 ? 16 : 8) / zoom
@@ -43,7 +45,7 @@ export const Bounds = observer<BoundsProps>(function Bounds({
 
   const smallDimension = Math.min(bounds.width, bounds.height) * zoom
   // If the bounds are small, don't show the rotate handle
-  const showRotateHandle = !hideRotateHandle && !isHidden && !isLocked && smallDimension > 32
+  const showRotateHandle = forceShowRotateHandles || !hideRotateHandle && !isHidden && !isLocked && smallDimension > 32
   // If the bounds are very small, don't show the edge handles
   const showEdgeHandles = !isHidden && !isLocked && smallDimension > 24
   // If the bounds are very very small, don't show the corner handles
@@ -122,7 +124,7 @@ export const Bounds = observer<BoundsProps>(function Bounds({
             targetSize={targetSize}
             size={size}
             bounds={bounds}
-            isHidden={!showEdgeHandles}
+            isHidden={!forceShowRotateHandles && !showEdgeHandles}
           />
         )}
         {showCloneHandles && <CloneButtons bounds={bounds} targetSize={targetSize} size={size} />}

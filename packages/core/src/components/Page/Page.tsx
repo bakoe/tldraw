@@ -20,6 +20,7 @@ interface PageProps<T extends TLShape, M extends Record<string, unknown>> {
   hideCloneHandles: boolean
   hideRotateHandle: boolean
   hideResizeHandles: boolean
+  forceShowRotateHandles: boolean
   meta?: M
 }
 
@@ -37,6 +38,7 @@ export const Page = observer(function _Page<T extends TLShape, M extends Record<
   hideCloneHandles,
   hideRotateHandle,
   hideResizeHandles,
+  forceShowRotateHandles,
   meta,
 }: PageProps<T, M>) {
   const { bounds: rendererBounds, shapeUtils } = useTLContext()
@@ -107,6 +109,7 @@ export const Page = observer(function _Page<T extends TLShape, M extends Record<
           hideResizeHandles={hideResizeHandles}
           hideBindingHandles={hideBindingHandles || !isLinked}
           hideCloneHandles={_hideCloneHandles}
+          forceShowRotateHandles={forceShowRotateHandles}
         />
       )}
       {!hideHandles && shapeWithHandles && <Handles shape={shapeWithHandles} zoom={zoom} />}

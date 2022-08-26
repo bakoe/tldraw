@@ -84,6 +84,10 @@ export interface RendererProps<T extends TLShape, M = any> extends Partial<TLCal
    */
   hideRotateHandles?: boolean
   /**
+   * (optional) When true, the renderer will always show rotate handles for selected objects.
+   */
+  forceShowRotateHandles?: boolean
+  /**
    * (optional) When true, the renderer will not show buttons for cloning shapes.
    */
   hideCloneHandles?: boolean
@@ -154,6 +158,7 @@ export const Renderer = observer(function _Renderer<
   hideBindingHandles = false,
   hideResizeHandles = false,
   hideRotateHandles = false,
+  forceShowRotateHandles = false,
   hideBounds = false,
   hideGrid = true,
   showDashedBrush = false,
@@ -212,6 +217,7 @@ export const Renderer = observer(function _Renderer<
         hideBindingHandles={hideBindingHandles}
         hideRotateHandle={hideRotateHandles}
         hideResizeHandles={hideResizeHandles}
+        forceShowRotateHandles={forceShowRotateHandles}
         hideGrid={hideGrid}
         showDashedBrush={showDashedBrush}
         onBoundsChange={onBoundsChange}

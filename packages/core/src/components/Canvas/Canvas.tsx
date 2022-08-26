@@ -46,6 +46,7 @@ interface CanvasProps<T extends TLShape, M extends Record<string, unknown>> {
   hideCloneHandles: boolean
   hideResizeHandles: boolean
   hideRotateHandle: boolean
+  forceShowRotateHandles: boolean
   hideGrid: boolean
   showDashedBrush: boolean
   externalContainerRef?: React.RefObject<HTMLElement>
@@ -79,6 +80,7 @@ export const Canvas = observer(function _Canvas<
   hideCloneHandles,
   hideResizeHandles,
   hideRotateHandle,
+  forceShowRotateHandles,
   hideGrid,
   onBoundsChange,
 }: CanvasProps<T, M>) {
@@ -124,6 +126,7 @@ export const Canvas = observer(function _Canvas<
             hideCloneHandles={hideCloneHandles}
             hideResizeHandles={hideResizeHandles}
             hideRotateHandle={hideRotateHandle}
+            forceShowRotateHandles={forceShowRotateHandles}
             meta={meta}
           />
           {users && userId && (
